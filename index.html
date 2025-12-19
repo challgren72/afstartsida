@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Välkommen - Arbetsförmedlingen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Grundläggande reset för sidan */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #ffffff; /* Helt vit bakgrund */
+        }
+
+        /* Kortet / Behållaren */
+        .af-card {
+            width: 800px;
+            height: 650px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            /* Behåll skuggan för att avgränsa kortet mot den vita bakgrunden, 
+               eller ta bort box-shadow om du vill att det ska smälta in helt. */
+            /*box-shadow: 0 10px 40px rgba(0,0,0,0.1); */
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            border: 0px solid #f0f0f0; /* Tunn ram för tydlighet */
+        }
+
+        /* Header Logo */
+        .af-logo {
+            width: 140px;
+            height: auto;
+            display: block;
+            margin-bottom: 24px;
+        }
+
+        /* Innehållsyta som växer */
+        .af-content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Typografi enligt AF Profil */
+        .af-h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00005A; /* Stratos */
+            margin-bottom: 16px;
+            line-height: 1.2;
+            margin-top: 0;
+        }
+
+        .af-h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #202020;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .af-body {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            color: #202020;
+            margin-top: 0;
+        }
+        
+        .af-strong {
+            font-weight: 700;
+            color: #00005A;
+        }
+
+        /* Listor */
+        .af-list {
+            padding-left: 24px;
+            margin-bottom: 24px;
+            margin-top: 0;
+        }
+        .af-list li {
+            margin-bottom: 12px;
+            list-style-type: disc;
+            color: #202020;
+        }
+
+        /* Divider (Leaf) */
+        .af-divider {
+            height: 4px;
+            width: 60px;
+            background-color: #95C23E; /* Leaf */
+            margin-bottom: 24px;
+            border-radius: 2px;
+        }
+
+        /* Progress Indicator (Stegindikator) */
+        .af-progress-indicator {
+            display: flex;
+            gap: 12px;
+            margin-top: auto; 
+            margin-bottom: 32px; 
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .af-progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #006eb6; 
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .af-progress-dot.active {
+            background-color: #006eb6; 
+            transform: scale(1.1);
+        }
+
+        /* Knappar */
+        .af-btn-container {
+            display: flex;
+            gap: 16px;
+        }
+
+        .af-btn {
+            padding: 12px 24px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s;
+            border: 2px solid transparent;
+        }
+
+        /* Primär knapp */
+        .af-btn-primary {
+            background-color: #006eb6;
+            color: white;
+            border-color: #006eb6;
+        }
+        .af-btn-primary:hover {
+            background-color: #005a96;
+        }
+        .af-btn-primary:disabled {
+            background-color: #CCE2F0;
+            border-color: #CCE2F0;
+            cursor: default;
+        }
+
+        /* Sekundär knapp */
+        .af-btn-secondary {
+            background-color: transparent;
+            color: #006eb6;
+            border-color: #006eb6;
+        }
+        .af-btn-secondary:hover {
+            background-color: #F0F6FA;
+        }
+        .af-btn-secondary:disabled {
+            color: #b3b3b3;
+            border-color: #b3b3b3;
+            cursor: default;
+        }
+
+        /* Payoff */
+        .af-payoff-small {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 24px;
+        }
+
+        /* Animationer */
+        .af-slide-hidden { display: none; }
+        .af-slide-visible { animation: fadeUp 0.4s ease-out; }
+        @keyframes fadeUp { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="af-card">
+        
+        <img src="https://arbetsformedlingen.se/webdav/files/logo/logo.svg" alt="Arbetsförmedlingen" class="af-logo">
+
+        <div class="af-content-area">
+            
+            <div id="slide-0" class="af-slide-visible">
+                <div class="af-divider"></div>
+                <h1 class="af-h1">Välkommen till din nya digitala arbetsplats</h1>
+                <p class="af-body">
+                    Din dator är ett av dina viktigaste verktyg och din "arbetskamrat" i vardagen. 
+                    Ta hand om den – så håller den länge!
+                </p>
+                <p class="af-body">
+                    Följ guiden för att säkerställa att din start blir så smidig som möjligt.
+                </p>
+                <div class="af-payoff-small">Enkelt. Pålitlig. För alla.</div>
+            </div>
+
+            <div id="slide-1" class="af-slide-hidden">
+                <h2 class="af-h2">Första inloggningen</h2>
+                <p class="af-body">Här är några viktiga saker att tänka på vid uppstart av din nya enhet:</p>
+                <ul class="af-list">
+                    <li>Du måste logga in på datorn <span class="af-strong">inne på kontoret</span> första gången.</li>
+                    <li>Låt datorn vara ansluten i <span class="af-strong">minst 60 minuter</span>.</li>
+                </ul>
+                <p class="af-body">Detta säkerställer att kritiska säkerhetsuppdateringar och certifikat installeras korrekt.</p>
+            </div>
+
+            <div id="slide-2" class="af-slide-hidden">
+                <h2 class="af-h2">Uppdateringar & Omstarter</h2>
+                <p class="af-body">Under den första timmen arbetar systemen intensivt i bakgrunden.</p>
+                <ul class="af-list">
+                    <li>Datorn kan behöva göra <span class="af-strong">flera omstarter</span>.</li>
+                    <li>Stanna kvar på kontoret tills datorn varit stabil i över en timme utan omstarts-begäran.</li>
+                </ul>
+                <p class="af-body">Installationer via nätverkskabel på kontoret går upp till 3x snabbare än via Wi-Fi.</p>
+            </div>
+
+            <div id="slide-3" class="af-slide-hidden">
+                <h2 class="af-h2">Innan du åker hem</h2>
+                <p class="af-body">När timmen har gått, gör en snabb egenkontroll:</p>
+                <ul class="af-list">
+                    <li><span class="af-strong">Program:</span> Startar Teams och Outlook som de ska?</li>
+                    <li><span class="af-strong">Självbetjäning:</span> Saknar du något? Beställ via portalen.</li>
+                    <li><span class="af-strong">VPN:</span> Koppla ur nätverkskabeln och testa att VPN ansluter automatiskt.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="af-progress-indicator">
+            <div id="dot-0" class="af-progress-dot active"></div>
+            <div id="dot-1" class="af-progress-dot"></div>
+            <div id="dot-2" class="af-progress-dot"></div>
+            <div id="dot-3" class="af-progress-dot"></div>
+        </div>
+
+        <div class="af-btn-container">
+            <button id="btn-prev" class="af-btn af-btn-secondary" onclick="moveSlide(-1)" disabled>Föregående</button>
+            <button id="btn-next" class="af-btn af-btn-primary" onclick="moveSlide(1)">Nästa</button>
+        </div>
+
+    </div>
+
+    <script>
+        (function() {
+            var curr = 0;
+            var total = 4;
+            
+            window.moveSlide = function(dir) {
+                // Göm nuvarande slide och avaktivera punkt
+                document.getElementById('slide-' + curr).className = 'af-slide-hidden';
+                document.getElementById('dot-' + curr).classList.remove('active');
+                
+                curr += dir;
+                
+                // Visa ny slide och aktivera punkt
+                document.getElementById('slide-' + curr).className = 'af-slide-visible';
+                document.getElementById('dot-' + curr).classList.add('active');
+                
+                // Uppdatera knappstatus
+                document.getElementById('btn-prev').disabled = (curr === 0);
+                
+                var nxt = document.getElementById('btn-next');
+                if (curr === total - 1) {
+                    nxt.innerText = "Klar";
+                    nxt.disabled = true; // Stoppar vid sista steget
+                } else {
+                    nxt.innerText = "Nästa";
+                    nxt.disabled = false;
+                }
+            };
+        })();
+    </script>
+</body>
+</html>
